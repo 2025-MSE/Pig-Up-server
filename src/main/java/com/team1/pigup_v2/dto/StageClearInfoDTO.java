@@ -1,13 +1,13 @@
 package com.team1.pigup_v2.dto;
 
-import lombok.Data;
+import lombok.*;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class StageClearInfoDTO {
-
     private String unityUserId;
-
-    private String stageName;
-
-    private Long clearTime;
+    private String stageId;
+    private boolean cleared;
 }

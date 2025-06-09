@@ -6,6 +6,8 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class UserDTO {
+public class StageClearRecordDTO {
     private String unityUserId;
+    private String stageId;
+    private long clearTimeMillis;
 }
