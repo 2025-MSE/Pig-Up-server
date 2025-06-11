@@ -14,12 +14,23 @@ public class UserService {
 
     private final UserRepository repository;
 
-    public User registerOrUpdateUser(String unityUserId) {
-        return repository.findByUnityUserId(unityUserId)
-                .orElseGet(() -> repository.save(User.builder().unityUserId(unityUserId).build()));
+    public User registerOrUpdateUser(UserDTO dto) {
+        Optional<User> existing = repository.findByUnityUserId(dto.getUnityUserId());
+
+        if (existing.isPresent()) {
+            User user = existing.get();
+            user.setUnityUserId(dto.getUnityUserId());
+            return repository.save(user);
+        } else {
+            User user = User.builder()
+                    .unityUserId(dto.getUnityUserId())
+                    .playername(dto.getPlayername())
+                    .build();
+            return repository.save(user);
+        }
     }
 
-    public Optional<User> getUser(String unityUserId) {
+    public Optional<User> getUserByUnityid(String unityUserId) {
         return repository.findByUnityUserId(unityUserId);
     }
 }

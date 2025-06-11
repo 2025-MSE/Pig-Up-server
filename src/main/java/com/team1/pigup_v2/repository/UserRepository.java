@@ -7,4 +7,7 @@ import java.util.Optional;
 
 public interface UserRepository extends JpaRepository<User, Long> {
     Optional<User> findByUnityUserId(String unityUserId);
+//    Optional<User> findByPlayername(String playername);
+//    boolean existsByUnityUserId(String unityUserId);
+//    boolean existsByPlayername(String playername);
 }

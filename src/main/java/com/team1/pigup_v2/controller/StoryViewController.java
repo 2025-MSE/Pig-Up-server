@@ -31,7 +31,7 @@ public class StoryViewController {
     }
 
     @GetMapping("/viewed/{unityUserId}")
-    public ResponseEntity<List<StoryView>> getViewed(@PathVariable String unityUserId) {
+    public ResponseEntity<List<StoryView>> getViewed(@PathVariable("unityUserId") String unityUserId) {
         return ResponseEntity.ok(service.getViewedStages(unityUserId));
     }
 }

@@ -8,4 +8,5 @@ import lombok.*;
 @Builder
 public class UserDTO {
     private String unityUserId;
+    private String playername;
 }
