@@ -15,16 +15,14 @@ public class WeatherService {
 
     private final RestTemplate restTemplate = new RestTemplate();
 
-    @Value("${openweather.api.key}")
-    private static String apiKey;
-
-    private static final String API_KEY = apiKey; // 내 key 넣기
-    private static final String BASE_URL =
-            "https://api.openweathermap.org/data/2.5/weather?q={city}&appid={key}&units=metric";
+    @Value("${weather.api.key}")
+    private String apiKey;
 
     public WeatherResponse getWeather(String city) {
-        ResponseEntity<Map> response = restTemplate.getForEntity(
-                BASE_URL, Map.class, city, API_KEY);
+        String url = "https://api.openweathermap.org/data/2.5/weather?q=" + city +
+                "&appid=" + apiKey + "&units=metric";
+
+        ResponseEntity<Map> response = restTemplate.getForEntity(url, Map.class);
 
         if (response.getStatusCode() == HttpStatus.OK && response.getBody() != null) {
             Map<String, Object> main = (Map<String, Object>) response.getBody().get("main");
